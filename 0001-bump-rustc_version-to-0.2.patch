@@ -1,0 +1,32 @@
+From a3013a748fdcceb09f7db287e7bddfc162b903fe Mon Sep 17 00:00:00 2001
+From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+Date: Tue, 5 Dec 2017 14:10:43 +0100
+Subject: [PATCH] bump rustc_version to 0.2
+
+Signed-off-by: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+---
+ newtype_derive/build.rs | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/newtype_derive/build.rs b/newtype_derive/build.rs
+index c617b37..e4a10e0 100644
+--- a/newtype_derive/build.rs
++++ b/newtype_derive/build.rs
+@@ -8,12 +8,12 @@ files in the project carrying such notice may not be copied, modified,
+ or distributed except according to those terms.
+ */
+ extern crate rustc_version;
+-use rustc_version::{version_matches};
++use rustc_version::{version, Version};
+ 
+ fn main() {
+     println!("cargo:rerun-if-changed=build.rs");
+ 
+-    if version_matches("1.8.0") {
++    if version().unwrap() >= Version::parse("1.8.0").unwrap() {
+         println!("cargo:rustc-cfg=op_assign");
+     }
+ }
+-- 
+2.15.1
+
